@@ -6,8 +6,8 @@ from netaddr import IPNetwork, IPSet
 def get_google_ips():
     """Get list of CIDR-notation Google subnets not assigned to GCP customers (and therefore used for google's APIs and services)"""
     logging.debug('Getting Google API IPs')
-    all_ips = get_ip_set(config['all_google_ips_url'])
-    customer_ips = get_ip_set(config['google_cloud_ips_url'])
+    all_ips = get_ip_set("https://www.gstatic.com/ipranges/goog.json")
+    customer_ips = get_ip_set("https://www.gstatic.com/ipranges/cloud.json")
     api_ips = all_ips - customer_ips
     return [{"ip": str(ip)} for ip in api_ips.iter_cidrs()]
 
