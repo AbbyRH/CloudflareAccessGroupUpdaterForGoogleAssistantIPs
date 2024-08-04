@@ -1,5 +1,6 @@
 import CloudFlare
 import requests
+import logging
 from netaddr import IPNetwork, IPSet
 
 def get_google_ips():
