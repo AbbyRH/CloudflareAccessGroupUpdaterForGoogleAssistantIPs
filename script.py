@@ -17,7 +17,7 @@ def update_access_group(token, account_id, group_id, ips):
         "require": []
     }
     
-    cf.accounts.rules.list.put(account_id, group_id, data=data)
+    cf.accounts.rules.lists.put(account_id, group_id, data=data)
     
 if __name__ == "__main__":
     import argparse
