@@ -11,7 +11,7 @@ def get_google_addresses():
 def update_access_group(token, account_id, group_id, ips):
     cf = CloudFlare.CloudFlare(token=token)
     
-    data = [{"ip": {"ip": ip}} for ip in ips]
+    data = [{"ip": ip} for ip in ips]
     
     cf.accounts.rules.lists.items.put(account_id, group_id, data=data)
     
