@@ -29,5 +29,6 @@ jobs:
           CF_ACCESSGROUP_ID: ${{ secrets.CF_ACCESSGROUP_ID }}
           CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
           CF_TOKEN: ${{ secrets.CF_TOKEN }}
+          CF_IPLIST_ID: ${{ secrets.CF_IPLIST_ID }}
 
         run: python script.py --account "$CF_ACCOUNT_ID" --token "$CF_TOKEN" --group "$CF_ACCESSGROUP_ID" --iplist "$CF_IPLIST_ID"
