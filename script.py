@@ -34,6 +34,9 @@ def update_access_group(token, account_id, ip_list, group_id, ips):
     cf = CloudFlare.CloudFlare(token=token)
     
     data = [{"ip": ip} for ip in ips]
+
+    print(ip_list)
+    print(group_id)
     
     cf.accounts.rules.lists.items.put(account_id, ip_list, data=ips)
     
