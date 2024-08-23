@@ -41,7 +41,7 @@ def update_access_group(token, account_id, ip_list, group_id, ips):
     cf.accounts.rules.lists.items.put(account_id, ip_list, data=ips)
     print("data: ", data)
     data = {
-        "include": [ {"ip": {"ip": ip}} for ip in ips ],
+        "include": [ {"ip": ip} for ip in ips ],
         "exclude": [],
         "require": []
     }
