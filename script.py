@@ -30,12 +30,12 @@ def get_google_addresses():
     ips = ips + [ entry['ipv6Prefix'] for entry in r.json()['prefixes'] if 'ipv6Prefix' in entry ]
     return ips
     
-def update_access_group(token, account_id, group_id, ips):
+def update_access_group(token, account_id, ip_list, group_id, ips):
     cf = CloudFlare.CloudFlare(token=token)
     
     data = [{"ip": ip} for ip in ips]
     
-    cf.accounts.rules.lists.items.put(account_id, group_id, data=ips)
+    cf.accounts.rules.lists.items.put(account_id, ip_list, data=ips)
     
 if __name__ == "__main__":
     import argparse
@@ -44,8 +44,9 @@ if __name__ == "__main__":
     parser.add_argument("--account", required=True, help="CF account ID")
     parser.add_argument("--token",   required=True, help="CF API key")
     parser.add_argument("--group",   required=True, help="ID of CF Access group that needs to be updated")
+    parser.add_argument("--iplist",  required=True, help="ID of ip list")
     args = parser.parse_args()
 
     ips = get_google_ips()
-    update_access_group(args.token, args.account, args.group, ips)
+    update_access_group(args.token, args.account, args.iplist, args.group, ips)
   
